@@ -23,7 +23,8 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Academy Manager'),
         ),
         body: Center(
-          child: SizedBox(
+          child: Container(
+            color: Color(0xFFE9EAEB),
             width: double.infinity,
             height: double.infinity,
             child: Column(
