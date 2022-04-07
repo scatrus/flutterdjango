@@ -25,11 +25,15 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: SizedBox(
             width: double.infinity,
+            height: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: const Color.fromARGB(255, 203, 210, 214),
+                      onPrimary: const Color.fromARGB(255, 28, 49, 119)),
                   onPressed: () {
                     setState(() {
                       buttomName = 'Clicou no botão';
