@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
                 ElevatedButton(
                   onPressed: () {
                     setState(() {
-                      buttomName = 'Clicou';
+                      buttomName = 'Clicou no botão';
                     });
                   },
                   child: Text(buttomName),
