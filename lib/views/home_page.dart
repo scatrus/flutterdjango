@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'academy.dart';
 
 class HomePage extends StatefulWidget {
@@ -33,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (BuildContext context) => const Academy(),
+                            builder: (context) => const Academy(),
                           ),
                         );
                       },
@@ -42,7 +43,8 @@ class _HomePageState extends State<HomePage> {
                     ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          debugPrint('Clicou');
+                          Get.snackbar('Hi', 'Mensagem');
+                          // Get.defaultDialog(title: '...');
                         });
                       },
                       child: const Text('Clicar'),
