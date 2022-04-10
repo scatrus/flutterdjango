@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+
 import 'academy.dart';
 
 class HomePage extends StatefulWidget {
@@ -43,6 +45,7 @@ class _HomePageState extends State<HomePage> {
                     ElevatedButton(
                       onPressed: () {
                         setState(() {
+                          getAcademy();
                           Get.snackbar('Hi', 'Mensagem');
                           // Get.defaultDialog(title: '...');
                         });
@@ -74,4 +77,12 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+}
+
+Future getAcademy() async {
+  var client = http.Client();
+  var response =
+      await client.get(Uri.parse('https://axoltlapi.herokuapp.com/'));
+
+  debugPrint(response.body);
 }
