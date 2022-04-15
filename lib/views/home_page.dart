@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 
 import 'academy.dart';
 
@@ -43,10 +43,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        setState(() {
-                          Get.snackbar('Hi', 'Mensagem');
-                          // Get.defaultDialog(title: '...');
-                        });
+                        getAcademy();
                       },
                       child: const Text('Clicar'),
                     ),
