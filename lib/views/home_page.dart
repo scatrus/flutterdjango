@@ -1,74 +1,31 @@
 import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
+import 'package:flutterdjango/controllers/academycontroller.dart';
+import 'package:get/get.dart';
+import 'package:get/instance_manager.dart';
 
-import 'academy.dart';
+class HomePage extends StatelessWidget {
+  final AcademyController academyController = Get.put(AcademyController());
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Academy Manager'),
+        title: const Text('Home Page'),
       ),
-      body: Center(
-        child: currentIndex == 0
-            ? Container(
-                color: const Color(0xFFE9EAEB),
-                width: double.infinity,
-                height: double.infinity,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(255, 203, 210, 214),
-                          onPrimary: const Color.fromARGB(255, 28, 49, 119)),
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const Academy(),
-                          ),
-                        );
-                      },
-                      child: const Text('Academia'),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        getAcademy();
-                      },
-                      child: const Text('Clicar'),
-                    ),
-                  ],
-                ),
-              )
-            : Image.asset('images/img.png'),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            label: 'Home',
-            icon: Icon(Icons.home_rounded),
+      body: SizedBox(
+        width: double.infinity,
+        child: Center(
+          child: ListView.builder(
+            itemCount: academyController.academyList.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(academyController.academyList[index].name),
+              );
+            },
           ),
-          BottomNavigationBarItem(
-            label: 'Academia',
-            icon: Icon(Icons.sports_kabaddi),
-          ),
-        ],
-        currentIndex: currentIndex,
-        onTap: (int index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
+        ),
       ),
     );
   }
