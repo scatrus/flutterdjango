@@ -8,12 +8,10 @@ class RemoteServices {
     var response = await client.get(
       Uri.parse('http://10.0.2.2:8000/academy'),
     );
-
     if (response.statusCode == 200) {
       var jsonString = response.body;
       return academyFromJson(jsonString);
     } else {
-      //show error message
       return null;
     }
   }
