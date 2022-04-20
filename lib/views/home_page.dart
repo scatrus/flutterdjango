@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(80, 49, 85, 1),
+        // backgroundColor: const Color.fromRGBO(80, 49, 85, 1),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
@@ -24,10 +24,10 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: const Color.fromARGB(255, 203, 210, 214),
-                onPrimary: const Color.fromARGB(255, 28, 49, 119),
-              ),
+              // style: ElevatedButton.styleFrom(
+              //   primary: const Color.fromARGB(255, 203, 210, 214),
+              //   onPrimary: Color.fromARGB(255, 119, 28, 99),
+              // ),
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
@@ -38,10 +38,10 @@ class HomePage extends StatelessWidget {
               child: const Text('Academia'),
             ),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: const Color.fromARGB(255, 203, 210, 214),
-                onPrimary: const Color.fromARGB(255, 28, 49, 119),
-              ),
+              // style: ElevatedButton.styleFrom(
+              //   primary: const Color.fromARGB(255, 203, 210, 214),
+              //   onPrimary: Color.fromARGB(255, 119, 28, 78),
+              // ),
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(

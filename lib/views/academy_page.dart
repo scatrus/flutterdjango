@@ -25,7 +25,7 @@ class AcademyPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ListTile(
                   selected: true,
-                  selectedTileColor: Colors.blue[100],
+                  // selectedTileColor: Colors.blue[100],
                   leading: const Icon(Icons.sports_kabaddi),
                   title: Text(academyController.academyList[index].name),
                 );

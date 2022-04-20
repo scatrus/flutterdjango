@@ -25,7 +25,7 @@ class TeacherPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ListTile(
                   selected: true,
-                  selectedTileColor: Colors.blue[100],
+                  // selectedTileColor: Color.fromARGB(255, 251, 187, 224),
                   leading: const Icon(Icons.sports_kabaddi),
                   title: Text(teacherController.teacherList[index].firstName),
                 );
