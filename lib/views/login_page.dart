@@ -1,8 +1,14 @@
+// ignore_for_file: unnecessary_const
+
 import 'package:flutter/material.dart';
+import 'package:flutterdjango/controllers/teachercontroller.dart';
 import 'package:flutterdjango/views/home_page.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  final TeacherController teacherController = Get.put(TeacherController());
+
+  LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +43,7 @@ class LoginPage extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
-                    hintText: 'Enter valid email id as abc@gmail.com'),
+                    hintText: 'Digite seu email'),
               ),
             ),
             const Padding(
@@ -48,8 +54,8 @@ class LoginPage extends StatelessWidget {
                 obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Password',
-                    hintText: 'Enter secure password'),
+                    labelText: 'Senha',
+                    hintText: 'Digite sua senha'),
               ),
             ),
             TextButton(
@@ -57,7 +63,7 @@ class LoginPage extends StatelessWidget {
                 //TODO FORGOT PASSWORD SCREEN GOES HERE
               },
               child: const Text(
-                'Forgot Password',
+                'Esqueci minha senha',
                 // style: TextStyle(
                 //     color: Color.fromARGB(255, 167, 4, 53), fontSize: 15),
               ),
@@ -87,7 +93,10 @@ class LoginPage extends StatelessWidget {
             const SizedBox(
               height: 130,
             ),
-            const Text('New User? Create Account')
+            ElevatedButton(
+              onPressed: () => {},
+              child: const Text("Registrar Academia"),
+            )
           ],
         ),
       ),
