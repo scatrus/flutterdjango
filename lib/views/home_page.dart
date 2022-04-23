@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdjango/views/login_page.dart';
 import 'package:flutterdjango/views/student_page.dart';
 import 'package:flutterdjango/views/teacher_page.dart';
+import 'package:flutterdjango/views/calendar.dart';
 import 'package:get/get.dart';
 
 import '../controllers/academycontroller.dart';
@@ -16,7 +17,20 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final AcademyController academyController = Get.put(AcademyController());
-  int currentIndex = 0;
+  int _currentIndex = 0;
+
+  List<Widget> pages = [
+    const Calendar(),
+    StudentPage(),
+    TeacherPage(),
+
+    // SizedBox(
+    //   child: FutureBuilder(
+    //     builder: (context, snapshot) => const Text('teste'),
+    //     future: Get.to(const Calendar()),
+    //   ),
+    // ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,89 +42,54 @@ class _HomePageState extends State<HomePage> {
           children: [
             Text(academyController.academyList[0].name),
             IconButton(
-              icon: Icon(Icons.logout_sharp),
-              tooltip: 'Sair',
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => LoginPage(),
-                  ),
-                );
-              },
-            ),
+                icon: const Icon(Icons.logout_sharp),
+                tooltip: 'Sair',
+                onPressed: () {
+                  Get.to(
+                    LoginPage(),
+                  );
+                }),
           ],
         ),
       ),
-      body: currentIndex == 0
-          ? const Calendar()
-          : currentIndex == 1
-              ? StudentPage()
-              : currentIndex == 2
-                  ? TeacherPage()
-                  : const Text(''),
-
-      // Navigator.of(context).push(
-      //                 MaterialPageRoute(
-      //                   builder: (context) => AcademyPage(),
-      //                 ),
-      //               )
-
-      // Column(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: [
-      //       ElevatedButton(
-      //         // style: ElevatedButton.styleFrom(
-      //         //   primary: const Color.fromARGB(255, 203, 210, 214),
-      //         //   onPrimary: Color.fromARGB(255, 119, 28, 99),
-      //         // ),
-      //         onPressed: () {
-      //           Navigator.of(context).push(
-      //             MaterialPageRoute(
-      //               builder: (context) => AcademyPage(),
-      //             ),
-      //           );
-      //         },
-      //         child: const Text('Academia'),
-      //       ),
-      //       ElevatedButton(
-      //         // style: ElevatedButton.styleFrom(
-      //         //   primary: const Color.fromARGB(255, 203, 210, 214),
-      //         //   onPrimary: Color.fromARGB(255, 119, 28, 78),
-      //         // ),
-      //         onPressed: () {
-      //           Navigator.of(context).push(
-      //             MaterialPageRoute(
-      //               builder: (context) => TeacherPage(),
-      //             ),
-      //           );
-      //         },
-      //         child: const Text('Professores'),
-      //       ),
-      //     ],
-      //   )
-
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.purple,
-        items: const [
-          BottomNavigationBarItem(
-            label: 'Agenda',
-            icon: Icon(Icons.schedule),
-          ),
-          BottomNavigationBarItem(
-            label: 'Aluno',
-            icon: Icon(Icons.group),
-          ),
-          BottomNavigationBarItem(
-            label: 'Professor',
-            icon: Icon(Icons.school),
-          ),
-        ],
-        currentIndex: currentIndex,
-        onTap: (int index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
+      body: Center(
+        child: pages[_currentIndex],
+      ),
+      bottomNavigationBar: NavigationBarTheme(
+        data: NavigationBarThemeData(
+          indicatorColor: Colors.white.withOpacity(0.5),
+        ),
+        child: NavigationBar(
+          backgroundColor: Colors.deepPurple,
+          animationDuration: const Duration(seconds: 1),
+          // labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+          height: 80,
+          selectedIndex: _currentIndex,
+          onDestinationSelected: (int newIndex) {
+            setState(
+              () {
+                _currentIndex = newIndex;
+              },
+            );
+          },
+          destinations: const [
+            NavigationDestination(
+              selectedIcon: Icon(Icons.schedule),
+              icon: Icon(Icons.schedule_outlined),
+              label: 'Agenda',
+            ),
+            NavigationDestination(
+              selectedIcon: Icon(Icons.group),
+              icon: Icon(Icons.group_outlined),
+              label: 'Aluno',
+            ),
+            NavigationDestination(
+              selectedIcon: Icon(Icons.school),
+              icon: Icon(Icons.school_outlined),
+              label: 'Professor',
+            ),
+          ],
+        ),
       ),
     );
   }

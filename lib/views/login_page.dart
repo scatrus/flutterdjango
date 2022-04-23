@@ -1,14 +1,31 @@
 // ignore_for_file: unnecessary_const
 
 import 'package:flutter/material.dart';
-import 'package:flutterdjango/controllers/teachercontroller.dart';
-import 'package:flutterdjango/views/home_page.dart';
-import 'package:get/get.dart';
+// import 'package:flutterdjango/controllers/teachercontroller.dart';
+// import 'package:flutterdjango/services/api_connection.dart';
+// import 'package:flutterdjango/views/home_page.dart';
+// import 'package:get/get.dart';
 
-class LoginPage extends StatelessWidget {
-  final TeacherController teacherController = Get.put(TeacherController());
+class LoginPage extends StatefulWidget {
+  // final TeacherController teacherController = Get.put(TeacherController());
+  const LoginPage({Key? key}) : super(key: key);
 
-  LoginPage({Key? key}) : super(key: key);
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final userController = TextEditingController();
+  final passController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    userController.dispose();
+    passController.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +57,7 @@ class LoginPage extends StatelessWidget {
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
+                // controller: userController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
@@ -51,6 +69,7 @@ class LoginPage extends StatelessWidget {
                   EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
+                // controller: passController,
                 obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -77,12 +96,8 @@ class LoginPage extends StatelessWidget {
               ),
               child: TextButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const HomePage(),
-                    ),
-                  );
+                  // getToken(userController.text, passController.text);
+                  // Get.to(const HomePage());
                 },
                 child: const Text(
                   'Login',
