@@ -4,6 +4,7 @@ import 'package:flutterdjango/views/student_page.dart';
 import 'package:flutterdjango/views/teacher_page.dart';
 import 'package:flutterdjango/views/calendar.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../controllers/academycontroller.dart';
 import 'calendar.dart';
@@ -16,6 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  GetStorage box = GetStorage();
   final AcademyController academyController = Get.put(AcademyController());
   int _currentIndex = 0;
 
@@ -40,13 +42,13 @@ class _HomePageState extends State<HomePage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text(academyController.academyList[0].name),
+            Text(box.read('token')),
             IconButton(
                 icon: const Icon(Icons.logout_sharp),
                 tooltip: 'Sair',
                 onPressed: () {
                   Get.to(
-                    LoginPage(),
+                    const LoginPage(),
                   );
                 }),
           ],

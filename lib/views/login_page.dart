@@ -1,6 +1,12 @@
 // ignore_for_file: unnecessary_const
 
 import 'package:flutter/material.dart';
+import 'package:flutterdjango/models/api_model.dart';
+import 'package:flutterdjango/views/home_page.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+
+import '../services/api_connection.dart';
 // import 'package:flutterdjango/controllers/teachercontroller.dart';
 // import 'package:flutterdjango/services/api_connection.dart';
 // import 'package:flutterdjango/views/home_page.dart';
@@ -27,6 +33,9 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  GetStorage box = GetStorage();
+
+  // final userLogin = {"username":userController, "password":passController};
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,25 +62,25 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            const Padding(
+            Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-                // controller: userController,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                controller: userController,
+                decoration: const InputDecoration(
+                    border: const OutlineInputBorder(),
                     labelText: 'Email',
                     hintText: 'Digite seu email'),
               ),
             ),
-            const Padding(
-              padding:
-                  EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 15.0, right: 15.0, top: 15, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-                // controller: passController,
+                controller: passController,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Senha',
                     hintText: 'Digite sua senha'),
@@ -96,8 +105,16 @@ class _LoginPageState extends State<LoginPage> {
               ),
               child: TextButton(
                 onPressed: () {
-                  // getToken(userController.text, passController.text);
-                  // Get.to(const HomePage());
+                  box.write(
+                    'token',
+                    getToken(
+                      UserLogin(
+                          username: userController.text,
+                          password: passController.text),
+                    ),
+                  );
+                  // debugPrint(token);
+                  Get.to(() => (const HomePage()));
                 },
                 child: const Text(
                   'Login',

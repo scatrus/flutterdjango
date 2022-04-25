@@ -1,14 +1,19 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:flutterdjango/views/login_page.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../models/api_model.dart';
 
-final _base = "http://10.0.2.2:8000/";
-final _tokenEndpoint = "/api-token-auth/";
-final _tokenURL = _base + _tokenEndpoint;
+const _base = "http://10.0.2.2:8000";
+const _tokenEndpoint = "/api-token-auth/";
+const _tokenURL = _base + _tokenEndpoint;
 
-Future<Token> getToken(UserLogin userLogin, String text) async {
-  print(_tokenURL);
+Future<Token> getToken(
+  UserLogin userLogin,
+) async {
+  debugPrint(_tokenURL);
 
   final http.Response response = await http.post(
     Uri.parse(_tokenURL),
@@ -20,7 +25,8 @@ Future<Token> getToken(UserLogin userLogin, String text) async {
   if (response.statusCode == 200) {
     return Token.fromJson(json.decode(response.body));
   } else {
-    print(json.decode(response.body).toString());
+    Get.snackbar('Erro', json.decode(response.body).toString());
+    Get.to(const LoginPage());
     throw Exception(json.decode(response.body));
   }
 }
