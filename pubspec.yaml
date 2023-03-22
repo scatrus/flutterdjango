@@ -36,7 +36,7 @@ dependencies:
   get: ^4.6.1
   http: ^0.13.4
   syncfusion_flutter_calendar: ^20.1.50
-  dio: ^4.0.6
+  dio: ^5.0.0
   get_storage:
 
 dev_dependencies:
